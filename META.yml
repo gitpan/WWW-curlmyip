@@ -24,4 +24,4 @@ requires:
 resources:
   homepage: https://github.com/sillymoose/WWW-curlmyip
   repository: https://github.com/sillymoose/WWW-curlmyip.git
-version: '0.01'
+version: '0.02'

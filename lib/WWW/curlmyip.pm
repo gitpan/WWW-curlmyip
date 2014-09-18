@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package WWW::curlmyip;
-$WWW::curlmyip::VERSION = '0.01';
+$WWW::curlmyip::VERSION = '0.02';
 use HTTP::Tiny;
 use 5.008;
 
@@ -18,8 +18,9 @@ BEGIN {
 
 sub get_ip {
     my $response = HTTP::Tiny->new->get('http://curlmyip.com');
-    die join(' ', 'error fetching ip',$response->{code}, $response->{reason})
-        unless $response->{success};
+    die join(' ', 'Error fetching ip: ',
+                  ($response->{status} or ''),
+                  ($response->{reason} or '')) unless $response->{success};
     my $ip = $response->{content};
     chomp $ip;
     $ip;
@@ -39,7 +40,7 @@ WWW::curlmyip - Returns your ip address using L<http://curlmyip.com>
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
